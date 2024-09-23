@@ -1,58 +1,67 @@
+"use strict";
 // Нахождение элементов
-var nameUser = document.querySelector('.input__name');
-var vacancyUser = document.querySelector('.input__vacancy');
-var numberUser = document.querySelector('.input__number');
-var addUser = document.querySelector('.button__add');
-var clearListUser = document.querySelector('.button__clear-list');
-var searchUser = document.querySelector('.button__search');
+const nameUser = document.querySelector('.input__name');
+const vacancyUser = document.querySelector('.input__vacancy');
+const numberUser = document.querySelector('.input__number');
+const addUser = document.querySelector('.button__add');
+const clearListUser = document.querySelector('.button__clear-list');
+const searchUser = document.querySelector('.button__search');
 // tasks делается под localStorage
 // let tasks = []
 if (nameUser && vacancyUser && numberUser) {
-    addUser === null || addUser === void 0 ? void 0 : addUser.addEventListener('click', addTask);
+    addUser?.addEventListener('click', addTask);
 } //else {
-// 	showError()
-// }
+//	showError()
+//}
 // Функция добавления задачи
 function addTask(event) {
     event.preventDefault();
     // Грамотный ввод данных
-    var name = nameUser.value.trim();
-    var vacancy = vacancyUser.value.trim();
-    var numberP = numberUser.value.trim();
-    var firstLetterName = name[0].toUpperCase();
-    var firstLetterVacancy = vacancy[0].toUpperCase();
-    var correctName = firstLetterName + name.slice(1).toLowerCase();
-    var correctVacancy = firstLetterVacancy + vacancy.slice(1).toLowerCase();
-    var correctNumber = '';
-    var allInfoAboutUser = {
+    let name = nameUser.value.trim();
+    let vacancy = vacancyUser.value.trim();
+    let numberP = numberUser.value.trim();
+    const firstIndexName = name[0].toUpperCase();
+    const firstIndexVacancy = vacancy[0].toUpperCase();
+    const correctName = firstIndexName + name.slice(1).toLowerCase();
+    const correctVacancy = firstIndexVacancy + vacancy.slice(1).toLowerCase();
+    let correctNumber = '';
+    let allInfoAboutUser = {
         Name: '',
         Vacancy: '',
         Phone: '',
     };
-    if (numberP[0] == '+') {
+    if (numberP[0] === '+') {
         correctNumber = numberP;
     }
     else {
-        correctNumber = "+".concat(numberP);
+        correctNumber = '+' + numberP;
     }
-    if (correctNumber.length === 12) {
-        allInfoAboutUser.Phone = correctNumber;
-        //} else {
-        // showError()
-    }
-    if (correctName.length < 21) {
+    if (correctName.length < 31 &&
+        correctVacancy.length < 31 &&
+        correctNumber.length === 12) {
         allInfoAboutUser.Name = correctName;
-    }
-    else {
-        // showError()
-    }
-    if (correctVacancy.length < 21) {
         allInfoAboutUser.Vacancy = correctVacancy;
+        allInfoAboutUser.Phone = correctNumber;
     }
     else {
-        // showError()
+        console.log('Ошибка при вводе данных!');
     }
     console.log(allInfoAboutUser);
+    // if (numberP[0] == '+') {
+    // 	correctNumber = numberP
+    // } else {
+    // 	correctNumber = `'+'${numberP}`
+    // }
+    // if (correctNumber.length === 12) {
+    // allInfoAboutUser.Phone = correctNumber
+    // }
+    // 	if (correctName.length < 21) {
+    // allInfoAboutUser.Name = correctName
+    // }
+    // if (correctVacancy.length < 50) {
+    // allInfoAboutUser.Vacancy = correctVacancy
+    // }
+    // console.log(allInfoAboutUser)
     //Работа с данными
 }
 // if (nameUser && vacancyUser && numberUser) {
@@ -62,13 +71,12 @@ function addTask(event) {
 // 	event.preventDefault()
 // }
 function showError() {
-    var mainError = document.createElement('div');
+    const mainError = document.createElement('div');
     mainError.className = 'main-error';
-    var navMenu = document.querySelector('.nav');
-    navMenu === null || navMenu === void 0 ? void 0 : navMenu.after(mainError);
-    var secondError = document.createElement('div');
+    const navMenu = document.querySelector('.nav');
+    navMenu?.after(mainError);
+    const secondError = document.createElement('div');
     secondError.className = 'second_error';
     secondError.textContent = 'Error';
-    mainError === null || mainError === void 0 ? void 0 : mainError.appendChild(secondError);
+    mainError?.appendChild(secondError);
 }
-clearListUser === null || clearListUser === void 0 ? void 0 : clearListUser.addEventListener('click', showError);

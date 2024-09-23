@@ -15,8 +15,8 @@ const searchUser = document.querySelector('.button__search')
 if (nameUser && vacancyUser && numberUser) {
 	addUser?.addEventListener('click', addTask)
 } //else {
-// 	showError()
-// }
+//	showError()
+//}
 
 // Функция добавления задачи
 function addTask(event: Event) {
@@ -27,11 +27,11 @@ function addTask(event: Event) {
 	let vacancy = vacancyUser.value.trim()
 	let numberP = numberUser.value.trim()
 
-	const firstLetterName = name[0].toUpperCase()
-	const firstLetterVacancy = vacancy[0].toUpperCase()
+	const firstIndexName = name[0].toUpperCase()
+	const firstIndexVacancy = vacancy[0].toUpperCase()
 
-	const correctName = firstLetterName + name.slice(1).toLowerCase()
-	const correctVacancy = firstLetterVacancy + vacancy.slice(1).toLowerCase()
+	const correctName = firstIndexName + name.slice(1).toLowerCase()
+	const correctVacancy = firstIndexVacancy + vacancy.slice(1).toLowerCase()
 	let correctNumber = ''
 
 	let allInfoAboutUser: { Name: string; Vacancy: string; Phone: string } = {
@@ -40,31 +40,42 @@ function addTask(event: Event) {
 		Phone: '',
 	}
 
-	if (numberP[0] == '+') {
+	if (numberP[0] === '+') {
 		correctNumber = numberP
 	} else {
-		correctNumber = `+${numberP}`
+		correctNumber = '+' + numberP
 	}
 
-	if (correctNumber.length === 12) {
-		allInfoAboutUser.Phone = correctNumber
-		//} else {
-		// showError()
-	}
-
-	if (correctName.length < 21) {
+	if (
+		correctName.length < 31 &&
+		correctVacancy.length < 31 &&
+		correctNumber.length === 12
+	) {
 		allInfoAboutUser.Name = correctName
-	} else {
-		// showError()
-	}
-
-	if (correctVacancy.length < 21) {
 		allInfoAboutUser.Vacancy = correctVacancy
+		allInfoAboutUser.Phone = correctNumber
 	} else {
-		// showError()
+		console.log('Ошибка при вводе данных!')
 	}
-
 	console.log(allInfoAboutUser)
+
+	// if (numberP[0] == '+') {
+	// 	correctNumber = numberP
+	// } else {
+	// 	correctNumber = `'+'${numberP}`
+	// }
+
+	// if (correctNumber.length === 12) {
+	// allInfoAboutUser.Phone = correctNumber
+	// }
+	// 	if (correctName.length < 21) {
+	// allInfoAboutUser.Name = correctName
+	// }
+	// if (correctVacancy.length < 50) {
+	// allInfoAboutUser.Vacancy = correctVacancy
+	// }
+
+	// console.log(allInfoAboutUser)
 
 	//Работа с данными
 }
@@ -89,5 +100,3 @@ function showError() {
 	secondError.textContent = 'Error'
 	mainError?.appendChild(secondError)
 }
-
-clearListUser?.addEventListener('click', showError)
