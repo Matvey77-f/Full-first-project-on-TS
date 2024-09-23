@@ -251,13 +251,13 @@ body {
 	background: goldenrod;
 }
 
-.error {
+.main-error {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.error-js {
+.second_error {
 	height: 35px;
 	width: 100px;
 	background-color: crimson;

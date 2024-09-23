@@ -14,9 +14,9 @@ const searchUser = document.querySelector('.button__search')
 
 if (nameUser && vacancyUser && numberUser) {
 	addUser?.addEventListener('click', addTask)
-	// } else {
-	// 	showError()
-}
+} //else {
+// 	showError()
+// }
 
 // Функция добавления задачи
 function addTask(event: Event) {
@@ -77,22 +77,17 @@ function addTask(event: Event) {
 // 	event.preventDefault()
 // }
 
-// function showError(event: Event) {
-// 	event.preventDefault()
+function showError() {
+	const mainError = document.createElement('div')
+	mainError.className = 'main-error'
 
-// 	const callError = document.querySelector('.error-js')
-// 	const mainLink = document.querySelector('.github-link')
+	const navMenu = document.querySelector('.nav')
+	navMenu?.after(mainError)
 
-// 	if (callError && mainLink) {
-// 		mainLink.insertAdjacentElement('afterend', callError)
-// 	} else {
-// 		console.error('ERROR in code!')
-// 	}
-// }
+	const secondError = document.createElement('div')
+	secondError.className = 'second_error'
+	secondError.textContent = 'Error'
+	mainError?.appendChild(secondError)
+}
 
-// Вызов ошибки
-// function showError(event: Event) {
-// 	event.preventDefault()
-
-// 	const mainError = document.querySelector('.error')
-// }
+clearListUser?.addEventListener('click', showError)

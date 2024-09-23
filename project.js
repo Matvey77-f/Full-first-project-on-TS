@@ -9,9 +9,9 @@ var searchUser = document.querySelector('.button__search');
 // let tasks = []
 if (nameUser && vacancyUser && numberUser) {
     addUser === null || addUser === void 0 ? void 0 : addUser.addEventListener('click', addTask);
-    // } else {
-    // 	showError()
-}
+} //else {
+// 	showError()
+// }
 // Функция добавления задачи
 function addTask(event) {
     event.preventDefault();
@@ -61,18 +61,14 @@ function addTask(event) {
 // function clearTask(event: Event) {
 // 	event.preventDefault()
 // }
-// function showError(event: Event) {
-// 	event.preventDefault()
-// 	const callError = document.querySelector('.error-js')
-// 	const mainLink = document.querySelector('.github-link')
-// 	if (callError && mainLink) {
-// 		mainLink.insertAdjacentElement('afterend', callError)
-// 	} else {
-// 		console.error('ERROR in code!')
-// 	}
-// }
-// Вызов ошибки
-// function showError(event: Event) {
-// 	event.preventDefault()
-// 	const mainError = document.querySelector('.error')
-// }
+function showError() {
+    var mainError = document.createElement('div');
+    mainError.className = 'main-error';
+    var navMenu = document.querySelector('.nav');
+    navMenu === null || navMenu === void 0 ? void 0 : navMenu.after(mainError);
+    var secondError = document.createElement('div');
+    secondError.className = 'second_error';
+    secondError.textContent = 'Error';
+    mainError === null || mainError === void 0 ? void 0 : mainError.appendChild(secondError);
+}
+clearListUser === null || clearListUser === void 0 ? void 0 : clearListUser.addEventListener('click', showError);
